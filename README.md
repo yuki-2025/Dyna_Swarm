@@ -36,7 +36,6 @@ export TOP_K=6
 
 # 采用学习得到的图结构进行推理
 nohup python -u my_scripts/run_crosswords_eval_graphs.py graph_45_0 test ./result/crosswords/tmp1 > train_0.log &
-0.xxxx
-# 
+
 
 ```
