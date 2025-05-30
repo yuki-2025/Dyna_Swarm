@@ -1,4 +1,4 @@
-# dynamic_swarm
+# dyna_swarm
 
 
 
