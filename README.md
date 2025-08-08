@@ -1,5 +1,5 @@
  
-# DynaSwarm: Towards a Flexible, Graph-Based Multi-Agent System
+# AgentNet: Towards a Flexible, Graph-Based Multi-Agent System
  
 
 <font size=7><div align='center' > [[📖Paper](https://arxiv.org/pdf/2501.019)] [[🍎 Homepage](https://.github.io/)] </div></font>
@@ -15,17 +15,17 @@ You can experience our demo here (Coming soon)
 
 ## Contents <!-- omit in toc -->
  
-## 👀 DynaSwarm Overview 
+## 👀 AgentNet Overview 
 
-On 2024.12.12, we launched DynaSwarm, the first-ever open‐source flexible graph-based multi-agent system that lets researchers and practitioners define, train, and deploy dynamic collaboration graphs without reimplementing core RL or LLM wrappers. Now (2025.05.20), we bring DynaSwarm v2.0 with a host of new capabilities to make multi-agent reasoning more accessible, efficient, and customizable.
+On 2024.12.12, we launched AgentNet, the first-ever open‐source flexible graph-based multi-agent system that lets researchers and practitioners define, train, and deploy dynamic collaboration graphs without reimplementing core RL or LLM wrappers. Now (2025.05.20), we bring AgentNet v2.0 with a host of new capabilities to make multi-agent reasoning more accessible, efficient, and customizable.
 
-### 🌟 What’s New in DynaSwarm v2.0?
+### 🌟 What’s New in AgentNet v2.0?
 
-We are excited to present DynaSwarm v2.0, which builds on the original release by introducing:
+We are excited to present AgentNet v2.0, which builds on the original release by introducing:
 
-1. **Enhanced Graph Selector Module**: Switched to a more expressive LoRA fine-tuning routine that can now handle up to 20 candidate graph templates per query. This allows DynaSwarm to learn richer branching strategies and select more nuanced agent interactions based on context.Added support for multi-objective selector losses—users can now jointly optimize for both downstream task performance and computation cost, letting the graph selector balance accuracy vs. latency.
+1. **Enhanced Graph Selector Module**: Switched to a more expressive LoRA fine-tuning routine that can now handle up to 20 candidate graph templates per query. This allows AgentNet to learn richer branching strategies and select more nuanced agent interactions based on context.Added support for multi-objective selector losses—users can now jointly optimize for both downstream task performance and computation cost, letting the graph selector balance accuracy vs. latency.
 
-2. **Modular Agent Plug-Ins**: Released a library of pre-built agent components (e.g., “MathSolver,” “TextVerifier,” “CodeSynthesizer”) that can be dropped into any collaboration graph without additional wrapping. Each plug-in comes with standardized input/output schemas, making custom graphs quicker to assemble. Provided a new API endpoint so users can register their own Hugging Face or OpenAI models as DynaSwarm agents; no need to rewrite core DynaSwarm code.
+2. **Modular Agent Plug-Ins**: Released a library of pre-built agent components (e.g., “MathSolver,” “TextVerifier,” “CodeSynthesizer”) that can be dropped into any collaboration graph without additional wrapping. Each plug-in comes with standardized input/output schemas, making custom graphs quicker to assemble. Provided a new API endpoint so users can register their own Hugging Face or OpenAI models as AgentNet agents; no need to rewrite core AgentNet code.
 
 3. **A2C Training Pipeline Upgrades** : Improved stability by integrating per-agent value baselines—each agent now maintains its own critic network, reducing variance in the advantage estimates when updating the graph policy. Expanded built-in support for distributed training (Torch DDP and DeepSpeed). Users can train on hundreds of GPUs out of the box, accelerating large-scale graph policy learning from days to hours.**
 
@@ -45,9 +45,9 @@ Published step-by-step notebooks showing how to:
 ### Requirements and Installation
 ```
 git clone https://github.com/yuki-2025/Dyna_Swarm
-cd DynaSwarm
-conda create -n DynaSwarm python=3.10 -y
-conda activate DynaSwarm
+cd AgentNet
+conda create -n AgentNet python=3.10 -y
+conda activate AgentNet
 pip install --upgrade pip
 pip install -r requirements.txt 
 ```
