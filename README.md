@@ -126,18 +126,7 @@ nohup python -u my_scripts/run_crosswords_eval_graphs.py graph_45_0 test ./resul
 
 ```
  
-## ✒️ Citation
-
-If you find our work helpful for your research, please consider citing our work.   
-
-```bibtex 
-@article{leo2024swarm,
-  title={Why Should Next-Gen LLM Multi-Agent Systems Move Beyond Fixed Architectures to Dynamic, Input-Driven Graphs?},
-  author={HY. Leong, YQ. Wu},
-  journal={arXiv preprint arXiv:2408.052},
-  year={2025}
-}
-```
+ 
 
  
 ##  Statement
