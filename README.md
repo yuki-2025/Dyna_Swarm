@@ -1,5 +1,5 @@
  
-# AgentNet: Towards a Flexible, Graph-Based Multi-Agent System
+# AgentNet: Dynamically Graph Structure Selection for LLM-Based Multi-Agent System
  
 
 <font size=7><div align='center' > [[📖Paper](https://arxiv.org/pdf/2501.019)] [[🍎 Homepage](https://.github.io/)] </div></font>
@@ -8,38 +8,42 @@
     <img src="./asset/banner.png" width="80%" height="80%">
 </p>
 
-  
-<font size=7><div align='center' >  🌟 </div></font>  
+<font size=7><div align='center' >   </div></font>  
 You can experience our demo here (Coming soon)
- 
 
-## Contents <!-- omit in toc -->
- 
-## 👀 AgentNet Overview 
+## Introduction 
+We introduce a dynamic, input-driven multi-agent system (MAS) that executes over learned communication graphs. First, we use Advantage Actor–Critic (A2C) to learn a stable distribution over edges, producing high-performing candidate graphs; then we fine-tune the base LLM (LoRA) as a graph selector that picks the best topology per input. The approach delivers consistent gains on structured reasoning (Crossword, Game-of-24, MMLU, BBH) and code generation (HumanEval) while keeping latency comparable to CoT/ToT-style and static-swarm baselines.  
 
-On 2024.12.12, we launched AgentNet, the first-ever open‐source flexible graph-based multi-agent system that lets researchers and practitioners define, train, and deploy dynamic collaboration graphs without reimplementing core RL or LLM wrappers. Now (2025.05.20), we bring AgentNet v2.0 with a host of new capabilities to make multi-agent reasoning more accessible, efficient, and customizable.
+<img width="664" height="364" alt="image" src="https://github.com/user-attachments/assets/cca23179-d45c-44a2-9dde-ab5ed1c8787e" />
 
-### 🌟 What’s New in AgentNet v2.0?
+## 👀 Motivation & Problem Statement
+1. **Fixed collaboration graphs** in existing multi-agent LLM pipelines (e.g. GPTSwarm) can’t adapt to the unique reasoning demands of each input, leading to “one-size-fits-all” suboptimality.
+2. **Reinforcement-learned graph** structures (via REINFORCE) improve things but suffer high variance and still remain static across samples.
+3. **Key insight**: Different inputs benefit from different agent-interaction topologies—no single graph wins on every example .
 
-We are excited to present AgentNet v2.0, which builds on the original release by introducing:
+## 🌟**AgentNet Framework**
+AgentNet unifies two core advances:
+1. **Actor-Critic Graph Optimization**
+   - Replace REINFORCE with an A2C (Advantage Actor-Critic) scheme to discover effective sparse subgraphs from a fully connected agent graph.
+   - Actor samples and scores graphs; Critic network estimates baseline value, reducing variance and speeding convergence .
+2. **Per-Input Graph Selector via LoRA Fine-Tuning**
+   - From A2C training, take the top K candidate graphs (e.g. K = 4).
+   - Fine-tune the same LLM backbone with low-rank adapters (LoRA) to act as a “graph selector”: given an input, it scores each candidate and picks the best topology on the fly.
+   - Training signal is a listwise ranking loss that encourages higher selector scores for graphs that empirically perform better on that example .
 
-1. **Enhanced Graph Selector Module**: Switched to a more expressive LoRA fine-tuning routine that can now handle up to 20 candidate graph templates per query. This allows AgentNet to learn richer branching strategies and select more nuanced agent interactions based on context.Added support for multi-objective selector losses—users can now jointly optimize for both downstream task performance and computation cost, letting the graph selector balance accuracy vs. latency.
+## Experimental Validation
+They evaluate on five diverse tasks:
 
-2. **Modular Agent Plug-Ins**: Released a library of pre-built agent components (e.g., “MathSolver,” “TextVerifier,” “CodeSynthesizer”) that can be dropped into any collaboration graph without additional wrapping. Each plug-in comes with standardized input/output schemas, making custom graphs quicker to assemble. Provided a new API endpoint so users can register their own Hugging Face or OpenAI models as AgentNet agents; no need to rewrite core AgentNet code.
+ <img width="469" height="233" alt="image" src="https://github.com/user-attachments/assets/e80c1718-c8a0-4ee6-95eb-eafe154fe77c" />
 
-3. **A2C Training Pipeline Upgrades** : Improved stability by integrating per-agent value baselines—each agent now maintains its own critic network, reducing variance in the advantage estimates when updating the graph policy. Expanded built-in support for distributed training (Torch DDP and DeepSpeed). Users can train on hundreds of GPUs out of the box, accelerating large-scale graph policy learning from days to hours.**
+Backbones: LLaMA-3 8B/70B, GPT-3.5-turbo, Deepseek R1 7B. <br/>
+Baselines: single-agent COT, TOT, GOT; MAS engines AutoGPT, AgentVerse, GPTSwarm. <br/>
 
-4. **Visualization & Debugging Tools**: Introduced a real-time graph execution visualizer: as queries flow through the selected graph, users can inspect token-level attention flows and agent activations in a web UI. Added gradient‐tracking mode for graph parameters—now it’s trivial to see how much each edge weight is influencing overall loss, making it easier to debug why certain agent pathways are favored.
-
-5. **Extended Benchmark Suite & Tutorials**: *Coming soon**
-Bundled an expanded evaluation suite that includes not only Crossword and Game-of-24, but also MMLU, BBH, and HumanEval. Benchmarks come pre-configured, with sample config files for replicating published results.
-
-Published step-by-step notebooks showing how to:
-1. Define a custom multi-agent graph for a reasoning task.
-2. Fine-tune the graph selector on a new dataset.
-3. Quantize agents for CPU-only inference.
-
- 
+### Key results (LLaMA-3 8B/70B):
+- AgentNet achieves 48.3% on Crossword vs. 44.7% (GPTSwarm)
+- 37.4% on Game-of-24 vs. 34.3%
+- Gains of 2–5 points across MMLU, BBH, HumanEval.
+- Latency comparable to GPTSwarm despite dynamic selection .
 
 ## ⭐ Setup
 ### Requirements and Installation
@@ -133,5 +137,6 @@ nohup python -u my_scripts/run_crosswords_eval_graphs.py graph_45_0 test ./resul
 
 **AgentNet is trained on large-scale open-source corpus, and its output has randomness. Any content generated by AgentNet does not represent the views of the model developers. We are not responsible for any problems arising from the use, misuse, and dissemination of AgentNet, including but not limited to public opinion risks and data security issues.**
  
-
+##  👍 Acknowledgement
+AgentNet is built with reference to the following outstanding works: GPTSwarm, deepseek, Qwen-2.5 . Thanks！
  
