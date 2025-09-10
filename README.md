@@ -2,7 +2,7 @@
 # AgentNet: Dynamically Graph Structure Selection for LLM-Based Multi-Agent System
  
 
-<font size=7><div align='center' > [[📖Paper](https://arxiv.org/pdf/2501.019)] [[🍎 Homepage](https://.github.io/)] </div></font>
+<!-- <font size=7><div align='center' > [[📖Paper](https://arxiv.org/pdf/2501.019)] [[🍎 Homepage](https://.github.io/)] </div></font>  -->
  
 <p align="center">
     <img src="./asset/banner.png" width="80%" height="80%">
