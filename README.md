@@ -22,7 +22,7 @@ We introduce a dynamic, input-driven multi-agent system (MAS) that executes over
 3. **Key insight**: Different inputs benefit from different agent-interaction topologies—no single graph wins on every example .
 
 ## 🌟**AMAS Framework**
-AgentNet unifies two core advances:
+AMAS unifies two core advances:
 1. **Actor-Critic Graph Optimization**
    - Replace REINFORCE with an A2C (Advantage Actor-Critic) scheme to discover effective sparse subgraphs from a fully connected agent graph.
    - Actor samples and scores graphs; Critic network estimates baseline value, reducing variance and speeding convergence .
