@@ -2,7 +2,7 @@
 # AgentNet: Dynamically Graph Structure Selection for LLM-Based Multi-Agent System
  
 
-<!-- <font size=7><div align='center' > [[📖Paper](https://arxiv.org/pdf/2501.019)] [[🍎 Homepage](https://.github.io/)] </div></font>  -->
+ <font size=7><div align='center' > [[📖Paper](https://arxiv.org/abs/2510.01617)] [[🍎 Homepage](https://.github.io/)] </div></font> 
  
 <p align="center">
     <img src="./asset/banner.png" width="80%" height="80%">
@@ -21,7 +21,7 @@ We introduce a dynamic, input-driven multi-agent system (MAS) that executes over
 2. **Reinforcement-learned graph** structures (via REINFORCE) improve things but suffer high variance and still remain static across samples.
 3. **Key insight**: Different inputs benefit from different agent-interaction topologies—no single graph wins on every example .
 
-## 🌟**AgentNet Framework**
+## 🌟**AMAS Framework**
 AgentNet unifies two core advances:
 1. **Actor-Critic Graph Optimization**
    - Replace REINFORCE with an A2C (Advantage Actor-Critic) scheme to discover effective sparse subgraphs from a fully connected agent graph.
