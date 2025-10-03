@@ -1,5 +1,5 @@
  
-# AMAS: Dynamically Graph Structure Selection for LLM-Based Multi-Agent System
+# AMAS: Adaptively Determining Communication Topology for LLM-based Multi-Agent System
  
 
  <font size=7><div align='center' > [[📖Paper](https://arxiv.org/abs/2510.01617)] [[🍎 Homepage](https://.github.io/)] </div></font> 
